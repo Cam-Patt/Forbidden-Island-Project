@@ -1,0 +1,12 @@
+//here is the frame that we will usue
+import java.awt.*;
+import java.awt.swing.*;
+public class ForbiddenIslandFrame extends JFrame{
+  public static final int WIDTH = 1200;
+  public static final int HEIGHT = 480;
+  public ForbiddenIslandFrame(String tilte){
+    super(tilte);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setVisible(true);
+  }
+}
