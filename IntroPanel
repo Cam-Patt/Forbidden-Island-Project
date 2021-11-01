@@ -1,1 +1,17 @@
-
+//Intro panel
+import java.awt.*;
+import javax.swing.*;
+public class introPanel extends JPanel{
+  public introPanel(){
+  
+  }
+  public void paint(Graphics g){
+  
+  }
+  public int getDifficulty(){
+  
+  }
+  public ArrayList<playerObject> getPlayerList(){
+  
+  }
+}
