@@ -4,8 +4,8 @@ import java.awt.swing.*;
 public class ForbiddenIslandFrame extends JFrame{
   public static final int WIDTH = 1200;
   public static final int HEIGHT = 480;
-  public ForbiddenIslandFrame(String tilte){
-    super(tilte);
+  public ForbiddenIslandFrame(String title){
+    super(title);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
   }
