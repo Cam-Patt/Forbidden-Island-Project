@@ -4,20 +4,20 @@ import java.awt.Image;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 public class ForbiddenIslandFrame extends JFrame{
-  public static final int WIDTH = 1200;
-  public static final int HEIGHT = 480;
-  private Image icon;
-  public ForbiddenIslandFrame(String title){
-	  super(title);
-	  try {
+	public static final int WIDTH = 1200;
+	public static final int HEIGHT = 480;
+	private Image icon;
+	public ForbiddenIslandFrame(String title){
+		super(title);
+		try {
 			icon = ImageIO.read(getClass().getResource("/Image/icon.png"));
-	  }
-	  catch(Exception e) {
-		  System.out.println("Icon Image not found.");
-	  }
-	  setIconImage(icon);
-	  icon = icon.getScaledInstance(800, 800, Image.SCALE_SMOOTH);
-	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	  setVisible(true);
-  }
+		}
+		catch(Exception e) {
+			System.out.println("Exception Error");
+		}
+		setIconImage(icon);
+		icon = icon.getScaledInstance(800, 800, Image.SCALE_SMOOTH);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
 }
