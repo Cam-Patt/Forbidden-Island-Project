@@ -13,7 +13,7 @@ public class ForbiddenIslandFrame extends JFrame{
 			icon = ImageIO.read(getClass().getResource("/Image/icon.png"));
 		}
 		catch(Exception e) {
-			System.out.println("Exception Error");
+			System.out.println("Image icon not found.");
 		}
 		setIconImage(icon);
 		icon = icon.getScaledInstance(800, 800, Image.SCALE_SMOOTH);
