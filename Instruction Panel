@@ -15,7 +15,8 @@ public class TitlePanel extends JFrame implements ActionListener {
 	private JComboBox<String> diff;
 	private JLabel l1, l2, l3;
 	public ImageIcon lt1, lt2, lt3;
-	public JButton start, info, temp;
+	public JButton start, temp;
+	public JPanel info;
 	public TitlePanel(String title)throws IOException {
 		super(title);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,8 +41,8 @@ public class TitlePanel extends JFrame implements ActionListener {
 		
 		start = new JButton("Start Game");
 		start.addActionListener(this);
-		info = new JButton("Get Instructions");
-		info.addActionListener(this);
+		info = new JPanel();
+		//change to equal Instruction Panel when Suliman is done
 		
 		this.add(l1);
 		this.add(l2);
@@ -62,10 +63,6 @@ public class TitlePanel extends JFrame implements ActionListener {
 			else {
 				System.out.println("Select Difficulty");
 			}
-		}
-		else if(e.getSource() == info) {
-			System.out.println("Do Whatever");
-			//This is where you would make txt file with instructions
 		}
 		
 	}
