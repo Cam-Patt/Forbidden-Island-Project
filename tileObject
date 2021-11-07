@@ -1,9 +1,0 @@
-public class tileObject{
-  private BufferedImage unflooded;
-  private BufferedImage flooded;
-  private String title;
-  private boolean isFlooded;
-  public tileObject(){
-  
-  }
-}
