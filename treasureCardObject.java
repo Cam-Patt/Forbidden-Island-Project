@@ -1,4 +1,4 @@
-public class TreasureCardObject{
+public class treasureCardObject{
   public treasureCardObject(){
   
   }
