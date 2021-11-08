@@ -4,7 +4,7 @@ public class playerObject{
   private boolean[] abilities;
   private int playerNum;
   private Color playerColor;
-  public PlayerObject(int num) {
+  public playerObject(int num) {
   
   }
 }
