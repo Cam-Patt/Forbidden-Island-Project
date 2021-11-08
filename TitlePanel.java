@@ -1,4 +1,4 @@
-/* Pedro's work
+// Pedro's work
 package island;
 
 import java.awt.GridLayout;
