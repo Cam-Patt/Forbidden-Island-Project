@@ -3,6 +3,7 @@ import javax.swing.*;
 public class allPlayerPanel extends JPanel {
     private ArrayList<playerObject> playerObjects;
     private ArrayList<playerPanel> playerPanels;
+    //GridLayout
     public allPlayerPanel(ArrayList<playerObject> p) {
       
     } 
