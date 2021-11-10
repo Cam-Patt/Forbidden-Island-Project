@@ -1,0 +1,59 @@
+
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+
+public class TileObject extends JPanel{
+	private String name;
+	private BufferedImage unFlooded, flooded; //need to have all images of tiles 
+	private boolean isFlooded; //if flooded
+	private String spAttribute; //whether one treasure or player starter (fools island = pilot) "none" if not either
+	
+	public TileObject(String name, String spAttribute, String unFloodedName, String floodedName) throws IOException {
+		// all information could come from a text file with all names, attributes and file names
+		this.name = name;
+		this.spAttribute = spAttribute;
+		unFlooded = ImageIO.read(new File(unFloodedName)); //unFloodedName is name of the corresponding file name
+		flooded = ImageIO.read(new File(floodedName)); // floodedName is same as unFLoodedName
+		try {
+			unFlooded = ImageIO.read(TileObject.class.getResource("/tileImages/" + unFloodedName));
+			flooded = ImageIO.read(TileObject.class.getResource("/tileImages/"  + floodedName));
+		}
+		catch(Exception e){
+			System.out.println("Error in making tile images");
+		}
+	}
+	public String getName() {
+		return name;
+	}
+	public boolean getFlooded() {
+		if (isFlooded) {
+			return true;
+		}
+		else {
+			isFlooded = true;
+			return false;
+		}
+	}
+	public String getSpAttribute() {
+		return spAttribute;
+		/*
+		can only return
+		
+		treasure = "Earth", "Wind", "Fire", "Ocean"
+		Player Starter = "Navigator", "Messenger", "Diver", "Engineer", "Pilot", "Explorer"
+		Else = "none"
+		
+		if too confusing i can add another method that return boolean if Fools Island 
+		*/
+	}
+	public BufferedImage getUnFloodedImage() {
+		return unFlooded;
+	}
+	public BufferedImage getFloodedImage() {
+		return flooded;
+	}
+}
