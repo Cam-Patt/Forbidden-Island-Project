@@ -6,7 +6,9 @@ public class playerObject{
   private int playerNum;
   private Color playerColor;
   public playerObject(int num) {
-  
-  
+ 
+  }
+  public String getRole() {
+       return role;
   }
 }
