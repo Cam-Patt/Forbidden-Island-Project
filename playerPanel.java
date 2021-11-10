@@ -10,12 +10,13 @@ public class playerPanel extends JPanel {
 	public playerPanel(playerObject p) {
 		playerRole = p.getRole();
 		try {
-			Navigator = ImageIO.read(playerPanel.class.getResource("/Images/Navigator.PNG"));
-			Messenger = ImageIO.read(playerPanel.class.getResource("/Images/Messenger.PNG"));
-			Explorer = ImageIO.read(playerPanel.class.getResource("/Images/Explorer.PNG"));
-			Pilot = ImageIO.read(playerPanel.class.getResource("/Images/Pilot.PNG"));
-			Engineer = ImageIO.read(playerPanel.class.getResource("/Images/Engineer.PNG"));
-			Diver = ImageIO.read(playerPanel.class.getResource("/Images/Diver.PNG"));
+			ImageIO.read(getClass().getResource
+			Navigator = ImageIO.read(getClass().getResource("/Images/Navigator.PNG"));
+			Messenger = ImageIO.read(getClass().getResource("/Images/Messenger.PNG"));
+			Explorer = ImageIO.read(getClass().getResource("/Images/Explorer.PNG"));
+			Pilot = ImageIO.read(getClass().getResource("/Images/Pilot.PNG"));
+			Engineer = ImageIO.read(getClass().getResource("/Images/Engineer.PNG"));
+			Diver = ImageIO.read(getClass().getResource("/Images/Diver.PNG"));
 			
 		}
 		catch (Exception E){
