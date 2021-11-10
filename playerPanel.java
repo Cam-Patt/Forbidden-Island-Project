@@ -10,7 +10,6 @@ public class playerPanel extends JPanel {
 	public playerPanel(playerObject p) {
 		playerRole = p.getRole();
 		try {
-			ImageIO.read(getClass().getResource
 			Navigator = ImageIO.read(getClass().getResource("/Images/Navigator.PNG"));
 			Messenger = ImageIO.read(getClass().getResource("/Images/Messenger.PNG"));
 			Explorer = ImageIO.read(getClass().getResource("/Images/Explorer.PNG"));
