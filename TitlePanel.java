@@ -4,12 +4,18 @@ package island;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.Font;
 
 public class TitlePanel extends JFrame implements ActionListener {
 	private JComboBox<String> diff;
@@ -64,7 +70,19 @@ public class TitlePanel extends JFrame implements ActionListener {
 				System.out.println("Select Difficulty");
 			}
 		}
-		
+		else if {
+			try {
+				Scanner input = new Scanner(new File("readfrom.txt"));
+				PrintWriter outfile = new PrintWriter(new File("instruction.txt"));
+				while (input.hasNext()) {
+					outfile.println(input.nextLine());
+					outfile.close();
+				}
+			} 
+			catch (FileNotFoundException exception) {
+				exception.printStackTrace();
+			}
+		}
 	}
 }
 
