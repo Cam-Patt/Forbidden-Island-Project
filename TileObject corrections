@@ -8,16 +8,18 @@ import javax.swing.JPanel;
 
 public class TileObject extends JPanel{
 	private String name;
+	private boolean canTravel;//can a player move on it or is it just  a water tile
 	private BufferedImage unFlooded, flooded; //need to have all images of tiles 
 	private boolean isFlooded; //if flooded
 	private String spAttribute; //whether one treasure or player starter (fools island = pilot) "none" if not either
 	
 	public TileObject(String name, String spAttribute, String unFloodedName, String floodedName) throws IOException {
 		// all information could come from a text file with all names, attributes and file names
+		canTravel = true;
 		this.name = name;
 		this.spAttribute = spAttribute;
-		unFlooded = ImageIO.read(new File(unFloodedName)); //unFloodedName is name of the corresponding file name
-		flooded = ImageIO.read(new File(floodedName)); // floodedName is same as unFLoodedName
+		//unFlooded = ImageIO.read(new File(unFloodedName)); //unFloodedName is name of the corresponding file name
+		//flooded = ImageIO.read(new File(floodedName)); // floodedName is same as unFLoodedName
 		try {
 			unFlooded = ImageIO.read(TileObject.class.getResource("/tileImages/" + unFloodedName));
 			flooded = ImageIO.read(TileObject.class.getResource("/tileImages/"  + floodedName));
@@ -55,5 +57,11 @@ public class TileObject extends JPanel{
 	}
 	public BufferedImage getFloodedImage() {
 		return flooded;
+	}
+	public void setCanTravel(boolean b) {
+		canTravel = b;
+	}
+	public boolean canTravel() {
+		return canTravel;
 	}
 }
