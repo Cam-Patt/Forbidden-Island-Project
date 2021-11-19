@@ -3,9 +3,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-public class waterMeter
+import java.awt.*;
+public class waterMeter extends JPanel
 {
 	private BufferedImage meter;
+	private BufferedImage arrow;
 	private int level;
 	int cardsToDraw;
 	
@@ -16,6 +18,8 @@ public class waterMeter
 		try
 		{
 			meter = ImageIO.read(WaterPanel.class.getResource("/images/WaterMeter.png"));
+			arrow = ImageIO.read(WaterPanel.class.getResource("/images/redArrow.png"));
+			
 		}
 		catch(Exception E)
 		{
@@ -27,6 +31,7 @@ public class waterMeter
 	public void rise()
 	{
 		level++;
+		paint();
 	}
 	
 	public boolean hasLost()
@@ -69,6 +74,8 @@ public class waterMeter
 	
 	public void paint(Graphics g)
 	{
-		//g.drawImage(meter, 0, 0, 800, 400, null);
+		g.drawImage(meter, 1260, 0, 335, 900, null);
+		g.drawImage(arrow, 1200, 699, 100, 100, null);
+		if(level )
 	}
 }
