@@ -44,7 +44,7 @@ public class playerObject{
 	  else if(abilities[5] == true) {
 		  return "can give cards without having to be on the same tiles";
 	  }
-	  return "fuck getAbility isn't working";
+	  return "getAbility isn't working";
   }
   public cardObject getCard(int index) {
 	  return hand.get(index);
