@@ -47,6 +47,7 @@ public class playerPanel extends JPanel {
 		default: 
 			System.out.println("Player Role Not Found");
 		}
+		//this is a temporary replacement for calling the cardPanel multiple times for each player
 		for(int i=0;i<player.getDeck().size();i++) {
 			switch (player.getDeck().get(i)) {
 			case "Fire":
