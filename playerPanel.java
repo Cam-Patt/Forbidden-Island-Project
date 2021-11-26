@@ -1,16 +1,21 @@
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class playerPanel extends JPanel {
+	private String playerRole;
 	private playerObject p;
+	private boolean border=false;
+	private ArrayList<String> cards;
 	private BufferedImage Navigator, Messenger, Explorer, Pilot, Engineer, Diver, Card_Crystal_of_Fire, Card_Earth_Stone, Card_Oceans_Chalice, Card_Statue_of_the_Wind, Card_Helicopter, Card_Sand_Bag;
 	public playerPanel(playerObject p) {
 		this.p = p;
+		playerRole = p.getRole();
 		try {
 			Navigator = ImageIO.read(getClass().getResource("/Images/Navigator.PNG"));
 			Messenger = ImageIO.read(getClass().getResource("/Images/Messenger.PNG"));
@@ -54,7 +59,7 @@ public class playerPanel extends JPanel {
 				System.out.println("Error with player cards");
 			}
 		}
-		switch (p.getRole()) {
+		switch (playerRole) {
 		case "Navigator":
 			g.drawImage(Navigator, 0, 0, 250, 180, null);
 			break;
@@ -76,9 +81,18 @@ public class playerPanel extends JPanel {
 		default: 
 			System.out.println("Player Role Not Found");
 		}
-	
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setStroke(new BasicStroke(3));
+		if(border) {
+			g.setColor(Color.RED);
+		}
+		g2.setStroke(new BasicStroke(5));
 		g.drawRect(0, 0, getWidth()-1, getHeight()-1);
+		g.setColor(Color.BLACK);
+	}
+	public void highlightOn() {
+		border=true;
+	}
+	public void highlightOff() {
+		border=false;
 	}
 }
