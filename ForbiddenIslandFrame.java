@@ -36,6 +36,8 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 		setSize(WIDTH,HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+		makefloodDeck();
+		makeTreasureDeck();
 		title = new TitlePanel();
 		add(title);
 		title.b.start.addActionListener(this);
@@ -47,8 +49,6 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 		endOffTurnPressed = false;
 		amountOfActions = 0;
 		//make deck god dam it
-		makefloodDeck();
-		makeTreasureDeck();
 		floodDeck.shuffle();
 		treasureDeck.shuffle();
 		currentPlayer = new playerObject();
@@ -89,8 +89,6 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 		if(difficulty == 0) {
 			difficulty = 2;
 		}
-		GridLayout lay = new GridLayout(2,1);
-//		setLayout(lay);
 
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -107,20 +105,21 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 		}
 		allPlayerPanel panel = new allPlayerPanel(playerObjects);
 		graphics = new gamePanel(panel, meter, boardPanel);
-//		add(panelGame,0,0);  
 		boardPanel.setCallback(graphics);
 		action = new actionPanel();
-//		add(action,1,0);
-//		add(graphics,0,0); 
+
 		c.gridx = 0;
 		c.fill = 1;
+		c.weightx=1;
 		c.weighty=0.9;
 		c.gridy = 0;
 		add(graphics,c); 
+
 		c.weighty=0.1;
 		c.gridx = 0;
 		c.gridy = 1;
 		add(action,c);
+
 		currentPlayer = playerObjects.get(0);
 		graphics.turn(1);
 		graphics.setCallBack(this);
@@ -194,13 +193,97 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 		return fullList;
 	}
 	public void makeTreasureDeck() throws IOException {
+		ArrayList<String> titles;
+		ArrayList<String> images;
+		titles = new ArrayList<String>() {
+			{
+				add("Crystal of Fire");
+				add("Crystal of Fire");
+				add("Crystal of Fire");
+				add("Crystal of Fire");
+				add("Crystal of Fire");
+				add("Earth Stone");
+				add("Earth Stone");
+				add("Earth Stone");
+				add("Earth Stone");
+				add("Earth Stone");
+				add("Ocean's Chalice");
+				add("Ocean's Chalice");
+				add("Ocean's Chalice");
+				add("Ocean's Chalice");
+				add("Ocean's Chalice");
+				add("Statue of the Wind");
+				add("Statue of the Wind");
+				add("Statue of the Wind");
+				add("Statue of the Wind");
+				add("Statue of the Wind");
+				add("Water Rise!");
+				add("Water Rise!");
+				add("Water Rise!");
+				add("Helicopter");
+				add("Helicopter");
+				add("Helicopter");
+				add("Sand Bag");
+				add("Sand Bag");
+			}
+		};
+		
+		images = new ArrayList<String>() {
+			{
+				add("Card_Crystal_of_Fire@2x.png");
+				add("Card_Crystal_of_Fire@2x.png");
+				add("Card_Crystal_of_Fire@2x.png");
+				add("Card_Crystal_of_Fire@2x.png");
+				add("Card_Crystal_of_Fire@2x.png");
+				add("Card_Earth_Stone@2x.png");
+				add("Card_Earth_Stone@2x.png");
+				add("Card_Earth_Stone@2x.png");
+				add("Card_Earth_Stone@2x.png");
+				add("Card_Earth_Stone@2x.png");
+				add("Card_Ocean_s_Chalice@2x.png");
+				add("Card_Ocean_s_Chalice@2x.png");
+				add("Card_Ocean_s_Chalice@2x.png");
+				add("Card_Ocean_s_Chalice@2x.png");
+				add("Card_Ocean_s_Chalice@2x.png");
+				add("Card_Statue_of_the_Wind@2x.png");
+				add("Card_Statue_of_the_Wind@2x.png");
+				add("Card_Statue_of_the_Wind@2x.png");
+				add("Card_Statue_of_the_Wind@2x.png");
+				add("Card_Statue_of_the_Wind@2x.png");
+				add("Card_Waters_Rise@2x.png");
+				add("Card_Waters_Rise@2x.png");
+				add("Card_Waters_Rise@2x.png");
+				add("Card_Helicopter@2x.png");
+				add("Card_Helicopter@2x.png");
+				add("Card_Helicopter@2x.png");
+				add("Card_Sand_Bag@2x.png");
+				add("Card_Sand_Bag@2x.png");
+			}
+		};
+		
 		treasureDeck = new deckObject(); 
-		Scanner imageScanner = new Scanner(new File("treasureCard.txt"));
-		Scanner titleNames = new Scanner(new File("treasureCardTitle.txt"));
-		while(imageScanner.hasNext()) {
-			String imageTitle = imageScanner.nextLine();
+//		Scanner imageScanner = new Scanner(new File("treasureCard.txt"));
+//		Scanner titleNames = new Scanner(new File("treasureCardTitle.txt"));
+//		while(imageScanner.hasNext()) {
+//			String imageTitle = imageScanner.nextLine();
+//			BufferedImage b = ImageIO.read(ForbiddenIslandFrame.class.getResource("/cardFaces/" + imageTitle));
+//			String title = titleNames.nextLine();
+//			treasureCardObject card = new treasureCardObject(b, title);
+//			if(title.equals("Water Rise!")) {
+//				card = new waterRiseCardObject(b,title);
+//			}
+//			if(title.equals("Helicopter")) {
+//				card = new specialActionCardObject(b,title,"Helicoper");
+//			}
+//			if(title.equals("Sand Bag")) {
+//				card = new specialActionCardObject(b,title,"Sand Bag");
+//			}
+//			treasureDeck.addCard(card);
+//		}
+		for (int i=0; i < images.size(); i++) {
+			String imageTitle = images.get(i);
 			BufferedImage b = ImageIO.read(ForbiddenIslandFrame.class.getResource("/cardFaces/" + imageTitle));
-			String title = titleNames.nextLine();
+			String title = titles.get(i);
 			treasureCardObject card = new treasureCardObject(b, title);
 			if(title.equals("Water Rise!")) {
 				card = new waterRiseCardObject(b,title);
@@ -215,24 +298,59 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 		}
 	}
 	public void makefloodDeck() throws IOException {
-		Scanner imageScanner = new Scanner(new File("floodCards.txt"));
-		Scanner titleNames = new Scanner(new File("tileList.txt"));
+		ArrayList<String> tile_names = new ArrayList<String>() {
+			{
+				add("Breakers Bridge");
+				add("Bronze Gate");
+				add("Cave of Embers");
+				add("Cave of Shadows");
+				add("Cliffs of Abandon");
+				add("Copper Gate");
+				add("Coral Palace");
+				add("Crimson Forest");
+				add("Dunes of Deception");
+				add("Fools_Landing");
+				add("Gold Gate");
+				add("Howling Garden");
+				add("Iron Gate");
+				add("Lost Lagoon");
+				add("Misty Marsh");
+				add("Observatory");
+				add("Phantom Rock");
+				add("Silver Gate");
+				add("Temple of the Moon");
+				add("Temple of the Sun");
+				add("Tidal Palace");
+				add("Twilight Hollow");
+				add("Watchtower");
+				add("Whispering Garden");
+			}
+		};
 		floodDeck = new deckObject();
-		while(imageScanner.hasNext()) {
-			String imageTitle = imageScanner.nextLine();
-			//System.out.println(imageTitle);
+		for (String tile_name : tile_names) {
+			String imageTitle = "Flood_Card_" + tile_name + "@2x.png";
 			URL url = ForbiddenIslandFrame.class.getResource("/cardFaces/" + imageTitle);
+			System.out.println(tile_name + ":" + url);
 			BufferedImage b = ImageIO.read(url);
-			//			BufferedImage b = ImageIO.read(ForbiddenIslandFrame.class.getResource("/cardFaces/" + imageTitle));
-			floodCardObject card = new floodCardObject(b,titleNames.nextLine());
+			floodCardObject card = new floodCardObject(b,tile_name);
 			floodDeck.addCard(card);
 		}
+//		Scanner imageScanner = new Scanner(new File("floodCards.txt"));
+//		Scanner titleNames = new Scanner(new File("tileList.txt"));
+//		while(imageScanner.hasNext()) {
+//			String imageTitle = imageScanner.nextLine();
+//			//System.out.println(imageTitle);
+//			URL url = ForbiddenIslandFrame.class.getResource("/cardFaces/" + imageTitle);
+//			BufferedImage b = ImageIO.read(url);
+//			//			BufferedImage b = ImageIO.read(ForbiddenIslandFrame.class.getResource("/cardFaces/" + imageTitle));
+//			floodCardObject card = new floodCardObject(b,titleNames.nextLine());
+//			floodDeck.addCard(card);
+//		}
 	}
 	public void setUpGame() {
 	//	System.out.println(treasureDeck.toString());
 		//System.out.println(floodDeck.toString());
 		//Adds all the cards to player hand
-	//	treasureDeck = new deckObject();
 		ListIterator<playerObject> playerIter = playerObjects.listIterator();
 		while(playerIter.hasNext()) {
 			playerObject p = playerIter.next();
@@ -242,7 +360,8 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 					// Add to the treasure deck discard pile
 					treasureDeck.discard(card);
 					// *** Shouldn't this be the flooddeck?
-					treasureDeck.shuffleDiscarded();
+//					treasureDeck.shuffleDiscarded();
+					floodDeck.shuffleDiscarded();
 					i--;
 				}
 				else {
@@ -332,6 +451,7 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 		 graphics.highLightMove(currentPlayer);
 		 graphics.setAction("move");	
 		 validate();
+
 		 }
 
 	 public void shoreUp() throws IOException {
@@ -343,12 +463,47 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 	 }
 
 	 public void giveCards() throws IOException {
-		 stillTurn();
 		 amountOfActions++;
-		 graphics.highLightGiveCard(currentPlayer);
+		 ArrayList<playerObject> playerOptions = graphics.highLightGiveCard(currentPlayer);
+		 playerObject[] playerArray = new playerObject[playerOptions.size()];
+		 for(int i = 0; i < playerArray.length; i++) {
+			 playerArray[i] = playerOptions.get(i);
+		 }
 		 graphics.setAction("giveCard");
+		 //Object[] cards = {"0","1","2","3","4","5"};
+		 int index = JOptionPane.showOptionDialog(graphics, //location
+				 "Select player to give too", //message
+				 "Give Card - Step 1", //title of dialog
+				 JOptionPane.YES_NO_OPTION, //needed
+				 JOptionPane.QUESTION_MESSAGE, //needed
+				 null, //needed
+				 playerArray, //options
+				 playerArray[0] //default
+				 );
+		 playerObject selectedPlayer = playerArray[index];
+		ArrayList<cardObject> playerHand = currentPlayer.getHand();
+		cardObject[] hand = new cardObject[playerHand.size() + 1];
+		for(int j = 0; j < hand.length -1; j++) {
+			if(!playerHand.get(j).isSpecial())
+				hand[j + 1] = playerHand.get(j);
+		}
+		hand[0] = new cardObject(null, "Don't Give");
+		int cardIndex = JOptionPane.showOptionDialog(graphics, "Select Treasure card to give", 
+				"Give Card - Step 2", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,hand , hand[0]);
+		cardObject selectedCard = hand[cardIndex];
+		if(cardIndex == 0) {
+			amountOfActions--;
+		} else {
+			currentPlayer.getHand().remove(selectedCard);
+			selectedPlayer.getHand().add(selectedCard);
+		}
+		 stillTurn();
+		repaint();
+		graphics.validate();
+		// graphics.players.currentPanel().unHighLightCards();
 		 setPlayerLocation();
 		 validate();
+
 	 }
 
 	 public void getTreasure() throws IOException{
@@ -381,6 +536,8 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 		 }
 		 graphics.setAction("treasure");
 		 validate();
+		 stillTurn();
+
 	 }
 	 public void leaveIsland() {
 		 amountOfActions++;
@@ -398,15 +555,24 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 		 validate();
 		 }
 	 public void endTurn() throws IOException{
-		 stillTurn();
 		 endOffTurnPressed = true;
+		 stillTurn();
 		 graphics.setAction("end turn");
-		 //**** Is this extra stillTurn() call necessary
-		 //stillTurn();
+		 checkGameState();
 		 validate();
 	 }
 	 public void specialAction() {
-		 
+		 ArrayList<playerPanel> playerPs = graphics.players.listThatHasSpecial();
+		 playerObject[] players = new playerObject[playerPs.size()];
+		 int index = JOptionPane.showOptionDialog(graphics, //location
+				 "Select player to give too", //message
+				 "Give Card - Step 1", //title of dialog
+				 JOptionPane.YES_NO_OPTION, //needed
+				 JOptionPane.QUESTION_MESSAGE, //needed
+				 null, //needed
+				 players, //options
+				 players[0] //default
+				 );
 	 }
 	 public void endOfTurn() throws IOException {
 		 // Draw cards 
@@ -426,14 +592,14 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 					 graphics.players.currentPanel().highLightCards();
 					 // allow user to pick which card to discard
 					 Object[] cards = {"0","1","2","3","4","5"};
-					 int index = JOptionPane.showOptionDialog(graphics,
-							 "Select card to discard",
-							 "Discard",
-							 JOptionPane.YES_NO_OPTION,
-							 JOptionPane.QUESTION_MESSAGE,
-							 null,
-							 cards,
-							 cards[0]
+					 int index = JOptionPane.showOptionDialog(graphics, //location
+							 "Select card to discard", //message
+							 "Discard", //title of dialog
+							 JOptionPane.YES_NO_OPTION, //needed
+							 JOptionPane.QUESTION_MESSAGE, //needed
+							 null, //needed
+							 cards, //options
+							 cards[0] //default
 							 );
 					 graphics.players.currentPanel().unHighLightCards();
 					 //get selected card from player hand
@@ -446,7 +612,6 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 				 }
 			 }
 			 if(treasureDeck.getSize() == 0) {
-				 // *** This should probably be treasureDeck.shuffleDiscarded()
 				 treasureDeck.shuffleDiscarded();
 			 }
 		 }
@@ -469,13 +634,18 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 	 public void checkGameState() {
 		 //check if skull and bones reached
 		 if(graphics.waterMeter.hasLost()) {
-			 lostPanel hasLost = new lostPanel("water meter reached skull");
-			 removeAll();
-			 add(hasLost);
-			 setVisible(true);
-			 repaint();
-			 System.out.println("AAAA");
-			revalidate();
+			 String[] lost = new String[1];
+			 lost[0] = "OK";
+			 int index = JOptionPane.showOptionDialog(graphics, //location
+					 "G A M E O V E R", //message
+					 "WATER METER RECEAHED", //title of dialog
+					 JOptionPane.YES_NO_OPTION, //needed
+					 JOptionPane.QUESTION_MESSAGE, //needed
+					 null, //needed
+					 lost, //options
+					 lost[0] //default
+					 );
+			 this.dispose();
 		 }
 	 }
 }
