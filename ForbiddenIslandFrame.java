@@ -482,18 +482,21 @@ public class ForbiddenIslandFrame extends JFrame implements ActionListener{
 				 );
 		 playerObject selectedPlayer = playerArray[index];
 		ArrayList<cardObject> playerHand = currentPlayer.getHand();
-		cardObject[] hand = new cardObject[playerHand.size() + 1];
-		for(int j = 0; j < hand.length -1; j++) {
-			if(!playerHand.get(j).isSpecial())
-				hand[j + 1] = playerHand.get(j);
+		String[] hand = new String[playerHand.size()];
+		for(int j = 1; j < hand.length; j++) {
+			if(!playerHand.get(j-1).isSpecial())
+				hand[j] = playerHand.get(j-1).toString();
 		}
-		hand[0] = new cardObject(null, "Don't Give");
+		hand[0] = "Don't Give";
+		for(int k = 0; k < hand.length; k++) {
+			System.out.println(hand[k] + " ");
+		}
 		int cardIndex = JOptionPane.showOptionDialog(graphics, "Select Treasure card to give", 
-				"Give Card - Step 2", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,hand , hand[0]);
-		cardObject selectedCard = hand[cardIndex];
+				"Give Card - Step 2", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,hand, hand[0]);
 		if(cardIndex == 0) {
 			amountOfActions--;
 		} else {
+			cardObject selectedCard =playerHand.get(cardIndex - 1);
 			currentPlayer.getHand().remove(selectedCard);
 			selectedPlayer.getHand().add(selectedCard);
 		}
