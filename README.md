@@ -1,2 +1,2 @@
 # Forbidden-Island-Project
-Work or we will fail
+Thank you so much for all of your work. We did a good job regardless of the grade.
